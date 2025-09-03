@@ -1,0 +1,47 @@
+#include "pch.h"
+#include "iostream"
+using namespace System;
+using namespace std;
+struct ventas
+{
+    string distrito;
+    string mes;
+    int monto;
+};
+
+#define N 3
+
+//MAIN
+int main()
+{
+    int mayor = 0, pos, montTot = 0;
+    ventas datos[N];
+    //Ingresar datos
+    for (int i=0; i<N; i++)
+    {
+        cout << endl << "Venta " << i + 1;
+        cout << endl << "Ingrese distrito:   "; cin >> datos[i].distrito;
+        cout << endl << "Ingrese mes:   "; cin >> datos[i].mes;
+        cout << endl << "Ingrese monto: "; cin >> datos[i].monto;
+    }
+
+
+    // hallando la pos donde se encuentra el monto mayor
+    for (int i = 0; i < N; i++) {
+        if (datos[i].monto > mayor) {
+            mayor = datos[i].monto;
+            pos = i;
+        }
+    }
+
+    //hallando el monto total
+    for (int i = 0; i < N; i++) {
+        montTot += datos[i].monto;
+    }
+
+    //Imprime datos
+    cout << "El distrito que mas genero es: " << datos[pos].distrito << endl;
+    cout << "El monto recaudado es: " << montTot << endl;
+    system("pause>0");
+    return 0;
+}

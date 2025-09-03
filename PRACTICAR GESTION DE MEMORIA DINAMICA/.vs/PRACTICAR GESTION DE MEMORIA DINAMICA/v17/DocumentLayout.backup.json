@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\INTRO ALGORITMOS\\PRACTICAR GESTION DE MEMORIA DINAMICA\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{838A9DDC-E459-49D3-EB43-9D1D6137D267}|PRACTICAR GESTION DE MEMORIA DINAMICA\\PRACTICAR GESTION DE MEMORIA DINAMICA.vcxproj|D:\\INTRO ALGORITMOS\\PRACTICAR GESTION DE MEMORIA DINAMICA\\PRACTICAR GESTION DE MEMORIA DINAMICA\\PRACTICAR GESTION DE MEMORIA DINAMICA.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{838A9DDC-E459-49D3-EB43-9D1D6137D267}|PRACTICAR GESTION DE MEMORIA DINAMICA\\PRACTICAR GESTION DE MEMORIA DINAMICA.vcxproj|solutionrelative:PRACTICAR GESTION DE MEMORIA DINAMICA\\PRACTICAR GESTION DE MEMORIA DINAMICA.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PRACTICAR GESTION DE MEMORIA DINAMICA.cpp",
+              "DocumentMoniker": "D:\\INTRO ALGORITMOS\\PRACTICAR GESTION DE MEMORIA DINAMICA\\PRACTICAR GESTION DE MEMORIA DINAMICA\\PRACTICAR GESTION DE MEMORIA DINAMICA.cpp",
+              "RelativeDocumentMoniker": "PRACTICAR GESTION DE MEMORIA DINAMICA\\PRACTICAR GESTION DE MEMORIA DINAMICA.cpp",
+              "ToolTip": "D:\\INTRO ALGORITMOS\\PRACTICAR GESTION DE MEMORIA DINAMICA\\PRACTICAR GESTION DE MEMORIA DINAMICA\\PRACTICAR GESTION DE MEMORIA DINAMICA.cpp*",
+              "RelativeToolTip": "PRACTICAR GESTION DE MEMORIA DINAMICA\\PRACTICAR GESTION DE MEMORIA DINAMICA.cpp*",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAmwCEAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-08-28T06:15:11.731Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

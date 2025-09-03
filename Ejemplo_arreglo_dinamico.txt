@@ -1,0 +1,34 @@
+#include "pch.h"
+#include "iostream"
+using namespace System;
+using namespace std;
+
+int main()
+{
+    srand(time(nullptr));
+    int* numeros;
+    int t; //tam del arreglo
+    while(1)
+    {
+        Console::Clear();
+        //entrada
+        cout << endl << "Ingrese tam. del arreglo: "; cin >> t;
+        //crea el arreglo dinamico
+        numeros = new int[t];
+        //genera datos para el arreglo
+        for (int i=0; i<t; i++)
+        {
+            numeros[i] = 1 + rand() % (1000 - 1 + 1);
+        }
+        //imprime los datos
+        for (int i = 0; i < t; i++)
+        {
+            cout << endl << "numeros[" << i << "]=" << numeros[i];
+        }
+
+        delete[]numeros;
+        cout << endl << "presione una tecla para continuar.....";
+        system("pause>0");
+    }
+    return 0;
+}

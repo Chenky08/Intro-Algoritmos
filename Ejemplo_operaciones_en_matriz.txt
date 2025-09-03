@@ -1,0 +1,63 @@
+#include "pch.h"
+#include "iostream"
+using namespace System;
+using namespace std;
+#define FILAS 5 
+#define COLUMNAS 5
+
+int main()
+{
+    int suma_diagonal = 0;
+    int pares = 0, impares = 0;
+    srand(time(nullptr));//semilla para num aleatorios
+    int matriz[FILAS][COLUMNAS];
+    //llena la matriz con numeros aleatorios
+    for (int f=0; f<FILAS; f++)
+    {
+        for (int c=0; c<COLUMNAS; c++)
+        {
+            matriz[f][c] = 10 + rand() % (99 - 10 + 1);
+        }
+    }
+    //imprime la matriz
+    for (int f = 0; f < FILAS; f++)
+    {
+        for (int c = 0; c < COLUMNAS; c++)
+        {
+            cout << " " << matriz[f][c];
+        }
+        cout << endl;
+    }
+    //halla la suma diagonal
+    int suma_pares = 0, suma_impares = 0;
+    for (int f = 0; f < FILAS; f++)
+    {
+        for (int c = 0; c < COLUMNAS; c++)
+        {
+            if (f == c) {
+                suma_diagonal = suma_diagonal + matriz[f][c];
+            }
+            //cuenta pares e impares
+            if (matriz[f][c] % 2 == 0)
+            {
+                pares++;
+                suma_pares = suma_pares + matriz[f][c];
+            }
+            else
+            {
+                impares++;
+                suma_impares  = suma_impares + matriz[f][c];
+            }
+        }
+    }
+cout << endl << "REPORTE" << endl;
+cout << endl << "LA SUMA DE LA DIAGONAL = " << suma_diagonal;
+cout << endl << "LA SUMA DE PARES = " << pares;
+cout << endl << "LA SUMA DE IMPARES= " << impares;
+cout << endl << "TOTAL ACUMULADO DE PARES = " << suma_pares;
+cout << endl << "TOTAL ACUMULADO DE IMPARES= " << suma_impares;
+
+    system("pause>0");
+
+    return 0;
+}
