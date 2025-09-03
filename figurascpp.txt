@@ -1,0 +1,110 @@
+#include "pch.h"
+#include<iostream>
+#include<conio.h>
+#include<vector>
+using namespace std;
+using namespace System;
+#include "Cuadrado.h"
+
+int main()
+{
+    vector<Cuadrado*> cuadrados;
+    while (true) {
+        for (int i = 0; i < cuadrados.size(); i++) {
+            cuadrados[i]->borrar();
+        }
+
+        if (_kbhit()) {
+            char tecla = _getch();
+            switch (tecla)
+            {
+            case 'a': cuadrados.push_back(new Cuadrado()); break;
+            case 'e': cuadrados.erase(cuadrados.begin() + 0); break;
+            case 'c': 
+                for (int i = 0; i < cuadrados.size(); i++) {
+                    cuadrados[i]->cambiarColor();
+                }
+                break;
+            }
+        }
+
+
+        for (int i = 0; i < cuadrados.size(); i++) {
+            cuadrados[i]->mover();
+            cuadrados[i]->dibujar();
+        }
+        _sleep(10);
+    }
+    return 0;
+}
+
+
+
+
+#pragma once
+class Cuadrado
+{
+public:
+	Cuadrado(){
+		dx = 1;
+		dy = 0;
+		x = 5;
+		y = 27;
+		color = rand() % 10; // 0-9
+	}
+	~Cuadrado(){}
+	void dibujar() {
+		Console::SetCursorPosition(x, y);
+		switch (color)
+		{
+		case 0: Console::ForegroundColor = ConsoleColor::Red; break;
+		 case 1: Console::ForegroundColor = ConsoleColor::Blue; break;
+		 case 2: Console::ForegroundColor = ConsoleColor::Green; break;
+		 case 3: Console::ForegroundColor = ConsoleColor::Yellow; break;
+		 case 4: Console::ForegroundColor = ConsoleColor::Magenta; break;
+		 case 5: Console::ForegroundColor = ConsoleColor::Cyan; break;
+		 case 6: Console::ForegroundColor = ConsoleColor::DarkBlue; break;
+		 case 7: Console::ForegroundColor = ConsoleColor::DarkMagenta; break;
+		 case 8: Console::ForegroundColor = ConsoleColor::Gray; break;
+		 case 9: Console::ForegroundColor = ConsoleColor::White; break;
+		}
+		cout << char(219);
+	}
+	void borrar() {
+		Console::SetCursorPosition(x, y);
+		cout << " ";
+	}
+	void cambiarColor() {
+		int inicial = color;
+		do {
+			color = rand() % 10;
+		} while (color == inicial);
+	}
+	void mover() {
+		if (x > 115 && dx==1) {
+			dx = 0;
+			dy = -1;
+		}
+		else if (y < 2	&& dy==-1) {
+			dx = -1;
+			dy = 0;
+		}
+		else if (x < 2 && dx==-1) {
+			dx = 0;
+			dy = 1;
+		}
+		else if (y > 27 && dy==1) {
+			dx = 1;
+			dy = 0;
+		}
+		x += dx;
+		y += dy;
+	}
+private:
+	int x, y;
+	int dx, dy;
+	int color;
+};
+
+
+
