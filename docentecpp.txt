@@ -1,0 +1,188 @@
+#pragma once
+class CDocente
+{
+public:
+	CDocente(){}
+	CDocente(string _codigo,string nombresCompletos,int estudiosPostgrado,int aniosAntiguedad,int horas) {
+		this->codigo = _codigo;
+		this->nombresCompletos = nombresCompletos;
+		this->estudiosPostgrado = estudiosPostgrado;
+		this->aniosAntiguedad = aniosAntiguedad;
+		this->horas = horas;
+	}
+	~CDocente(){}
+	// Metodos de acceso
+	string getCodigo() {
+		return codigo;
+	}
+	void setCodigo(int param) {
+		codigo = param;
+	}
+	int getAniosAntiguedad() {
+		return aniosAntiguedad;
+	}
+	int getEstudioPostrado() {
+		return estudiosPostgrado;
+	}
+	void mostrarDatos() {
+		cout << codigo << " | " << nombresCompletos << " | " << (estudiosPostgrado == 1 ? "Doctorado" : (estudiosPostgrado == 2 ? "Maestria" :
+			(estudiosPostgrado==3? "Ambos":"No tiene"))) << " | Anios: "
+			<< aniosAntiguedad << " | horas: " << horas <<" | S. Neto: "<<getSueldoNeto()<< endl;
+	}
+	double virtual  getSueldoNeto() { return 0; }
+protected:
+	string codigo;
+	string nombresCompletos;
+	int estudiosPostgrado;
+	int aniosAntiguedad;
+	int horas;
+};
+
+
+
+
+
+#pragma once
+#include "CDocente.h"
+class CAsociado: public CDocente
+{
+public:
+	CAsociado(string codigo, string nombresCompletos, int estudiosPostgrado, int aniosAntiguedad, int horas) :
+		CDocente(codigo, nombresCompletos, estudiosPostgrado, aniosAntiguedad, horas){}
+	~CAsociado(){}
+
+	double getPagoParcial() {
+		return horas * 18;
+	}
+	double getBonificacion() {
+		if (estudiosPostgrado == 1) // Con doctorado{
+		{
+			return 0.15 * getPagoParcial();
+		}
+		if (estudiosPostgrado == 2) { // Con maestria
+			return 0.1 * getPagoParcial();
+		}
+		if (estudiosPostgrado == 3) { // Ambas
+			return 0.2 * getPagoParcial();
+		}
+		return 0;
+	}
+	double getSueldoBruto() {
+		return getPagoParcial() + getBonificacion();
+	}
+	double getDescuentos() {
+		if (aniosAntiguedad < 7) {
+			return 0.05 * getSueldoBruto();
+		}
+		return 0.04 * getSueldoBruto();
+	}
+	double getSueldoNeto() {
+		return getSueldoBruto() - getDescuentos();
+	}
+
+};
+
+
+
+
+#pragma once
+#include "CDocente.h"
+class CAuxiliar:public CDocente
+{
+public:
+	CAuxiliar(string codigo, string nombresCompletos, int estudiosPostgrado, int aniosAntiguedad, int horas) :
+		CDocente(codigo, nombresCompletos, estudiosPostgrado, aniosAntiguedad, horas){}
+	~CAuxiliar(){}
+
+	double getPagoParcial() {
+		return horas * 15;
+	}
+	double getBonificacion() {
+		if (estudiosPostgrado == 1) // Con doctorado{
+		{
+			return 0.12 * getPagoParcial();
+		}
+		if (estudiosPostgrado == 2) { // Con maestria
+			return 0.08 * getPagoParcial();
+		}
+		if (estudiosPostgrado == 3) { // Ambas
+			return 0.17 * getPagoParcial();
+		}
+		return 0;
+	}
+	double getSueldoBruto() {
+		return getPagoParcial() + getBonificacion();
+	}
+	double getDescuentos() {
+		if (aniosAntiguedad < 7) {
+			return 0.05 * getSueldoBruto();
+		}
+		return 0.04 * getSueldoBruto();
+	}
+	double getSueldoNeto() {
+		return getSueldoBruto() - getDescuentos();
+	}
+
+};
+
+
+
+
+#pragma once
+#include "CDocente.h"
+class CPrincipal: public CDocente
+{
+public:
+	CPrincipal(string codigo,string nombresCompletos,int estudiosPostgrado,int aniosAntiguedad, int horas):
+		CDocente(codigo,nombresCompletos,estudiosPostgrado,aniosAntiguedad,horas){
+		
+	}
+	~CPrincipal(){}
+	double getPagoParcial() {
+		return horas * 25;
+	}
+	double getBonificacion() {
+		if (estudiosPostgrado == 1) // Con doctorado{
+		{
+			return 0.20 * getPagoParcial();
+		}
+		if (estudiosPostgrado == 2) { // Con maestria
+			return 0.17 * getPagoParcial();
+		}
+		if (estudiosPostgrado == 3) { // Ambas
+			return 0.25 * getPagoParcial();
+		}
+		return 0;
+	}
+	double getSueldoBruto() {
+		return getPagoParcial() + getBonificacion();
+	}
+	double getDescuentos() {
+		if (aniosAntiguedad < 7) {
+			return 0.05 * getSueldoBruto();
+		}
+		return 0.04 * getSueldoBruto();
+	}
+	double getSueldoNeto() {
+		return getSueldoBruto() - getDescuentos();
+	}
+};
+
+
+
+
+#include <iostream>
+#include<conio.h>
+#include <vector>
+using namespace std;
+#include "CDocente.h"
+#include "CPriincipal.h"
+#include "CAsociado.h"
+#include "CAuxiliar.h"
+#include "Sistema.h"
+int main()
+{
+    CSistema* sistema = new CSistema();
+    sistema->iniciar();
+}
+

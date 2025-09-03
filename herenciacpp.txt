@@ -1,0 +1,62 @@
+#pragma once
+class CFigura {// clase padre
+public:
+	CFigura(int x, int y) {
+		this->x = x;
+		this->y = y;
+	}
+	int getX() { return x; }
+	int getY() { return y; }
+protected:
+	int x;
+	int y;
+};
+
+
+#pragma once
+#include "Figura.h"
+class Cuadrado: public CFigura
+{
+public:
+	Cuadrado(int x,int y): CFigura(x,y){
+		
+	}
+	~Cuadrado(){}
+	void mostrarDatos() {
+		cout << "X: " << x << endl;
+		cout << "Y: " << y << endl;
+	}
+
+
+};
+
+
+
+#pragma once
+#include "Figura.h"
+class Circulo:public CFigura
+{
+public:
+	Circulo(int x,int y, int radio):CFigura(x,y){
+		this->radio = radio;
+	}
+	~Circulo(){}
+
+private:
+	int radio;
+};
+
+
+
+#include <iostream>
+using namespace std;
+#include "Cuadrado.h"
+#include "Circulo.h"
+int main()
+{
+	Cuadrado* c1 = new Cuadrado(10, 15);
+	Circulo* c2 = new Circulo(30, 40, 6);
+	c1->mostrarDatos();
+	cout << "el valor de x es: " << c1->getX() << endl;
+	cout << " el valor de x del circulo es: " << c2->getX() << endl;
+}
