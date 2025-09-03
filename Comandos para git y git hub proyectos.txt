@@ -25,4 +25,8 @@ git pull origin main
 wq
 
 git remote add origin https://github.com/Chenky08/Intro-Algoritmos
+
 git push -f origin main
+
+
+lalo come pene
