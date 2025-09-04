@@ -1,0 +1,182 @@
+#include "pch.h"
+#include "iostream"
+#include "ctime"
+#include "string"
+using namespace std;
+using namespace System;
+
+
+struct Persona {
+	string nombre;
+	int edad;
+};
+
+string nombre_aleatorio() {
+	string nombres[] = { "Ana","Luis","Juan","Sofia","Carlos","Laura","Henry" };
+	int pos = rand() % 8;
+
+	return nombres[pos];
+}
+
+
+bool verificar_existe_nombre(Persona* personas, int n, string nombre) {
+
+	bool existe = false;
+	for (int i = 0; i < n; i++) {
+		if (personas[i].nombre == nombre) {
+			existe = true;
+		}
+	}
+
+	return existe;
+}
+
+
+void generar(Persona* personas, int& n, int cant) {
+	srand(time(0));
+	n =0;
+	
+	
+	for (int i = 0; i < cant;) {
+
+
+		string nombre = nombre_aleatorio();
+		bool existe_nombre = verificar_existe_nombre(personas, n, nombre);
+		if (!existe_nombre) {
+			personas[i].nombre = nombre;
+			personas[i].edad = 18 + rand() % 43;
+			n++;
+			i++;
+		}
+		
+	}
+}
+
+
+void Mostrar(Persona* personas, int n) {
+	if (n == 0) {
+		cout << "El arreglo esta vacio" << endl;
+		return;
+	}
+
+	for (int i = 0; i < n; i++) {
+		cout <<i+1<< ". " << personas[i].nombre << " Edad: " << personas[i].edad << endl;
+	}
+
+}
+
+int obtener_posicion_persona(Persona* personas, int n, string nombre) {
+	int posicion = -1;
+	for (int i = 0; i < n; i++) {
+		if (personas[i].nombre == nombre) {
+			posicion = i;
+		}
+	}
+
+	return posicion;
+}
+
+
+void ordenar_poredad(Persona* personas, int n) {
+	Persona aux;
+	for (int i = 0; i < n - 1; i++) {
+		for (int j = i + 1; j <n ; j++) {
+			if (personas[i].edad > personas[j].edad) {
+				aux = personas[i];
+				personas[i] = personas[j];
+				personas[j] = aux; 
+			}
+		}
+	}
+}
+
+bool eliminar_persona_posicion(Persona* personas, int n, int pos) {
+	bool eliminado = false;
+	if (pos<0 || pos>=n) {
+		return eliminado;
+	}
+
+	for (int i = pos; i < n - 1; i++) {
+		personas[i] = personas[i + 1];
+	}
+
+
+	
+	n--;
+	eliminado = true;
+	return eliminado;
+}
+
+
+
+
+int main() {
+
+	Persona* personas = new Persona[7];
+	int n;
+	int opcion;
+	int cantidad, posicionPersona;
+	string nombre;
+	bool eliminado;
+	do {
+
+		cout << "***MENU***" << endl;
+		cout << "1. Generar personas"<<endl;
+		cout << "2. Obtener posicion de persona" << endl;
+		cout << "3. Ordenar personas segun la edad" << endl;
+		cout << "4. Eliminar persona de una posicion" << endl;
+		cout << "0. Salir" << endl;
+
+		cout << "Selecciona una opcion del menu: " << endl;
+		cin >> opcion;
+
+		switch (opcion) {
+		case 1:
+			cout << "Ingresa la cantidad de personas a generar: "; cin >> cantidad;
+			generar(personas, n, cantidad);
+			Mostrar(personas, n);
+			break;
+		case 2:
+			cout << "Ingrese nombre de persona a buscar: " << endl;
+			getline(cin, nombre);
+			cin.ignore();
+			posicionPersona=obtener_posicion_persona(personas, n, nombre);
+
+			if (posicionPersona != -1) {
+				cout << "Encontrado en la posicion: " << posicionPersona << ": " << personas[posicionPersona].nombre << ", " << personas[posicionPersona].edad << endl;
+			}
+			else {
+				cout << "Nombre no encontrado" << endl;
+			}
+			break;
+		case 3:
+			ordenar_poredad(personas, n);
+			Mostrar(personas, n);
+			break;
+		case 4:
+			cout << "Ingresa la posicion de la persona que desea eliminar: "; cin >> posicionPersona;
+			eliminado = eliminar_persona_posicion(personas, n, posicionPersona);
+
+			if (eliminado) {
+				cout << "Persona eliminada del arreglo en la posicion " << posicionPersona << endl;
+				Mostrar(personas, n);
+			}
+			else {
+				cout << "No existe una persona en esa posicion" << endl;
+			}
+
+			break;
+		}
+
+
+
+
+
+	} while (opcion != 0);
+
+
+	delete[]personas;
+
+	system("pause>0");
+	return 0;
+}
